@@ -21,7 +21,7 @@ def part_a(a_path=''):
     """
 
     Te = 10000
-    rho, kappa = 1e-6, 3
+    rho, kappa = 10**(-6), 3
 
     #from lecture 6a : s from 0-1000km --> 0-1e6 meters
     s = np.linspace(0, 1e6, 10000)
@@ -31,7 +31,7 @@ def part_a(a_path=''):
 
     plt.title(r'$T$ vs $s$')
     plt.ylabel(r'$T$ (K)')
-    plt.xlabel(r'$s$ (km)')
+    plt.xlabel(r'$s$ (m)')
 
     plt.plot(s, T)
 
@@ -54,22 +54,22 @@ def part_b(T, s, b_path=''):
     """
 
     def saha(temp):
-        rho = 1e-6 #from 4a
+        rho = 10**(-6) #from 4a
         #textbook
         k, me, mp, hbar = 1.381e-23, 9.109e-31, 1.673e-27, 1.055e-34
         eV_to_J = 1.602e-19
 
         #using the solution to my equation for q3
-        return (rho/mp)*np.power(me*k*temp/(2*np.pi * hbar**2), 3/2)*np.exp(-13.6*eV_to_J/(k*temp))
+        return (mp/rho)*np.power(me*k*temp/(2*np.pi * hbar**2), 3/2)*np.exp(-13.6*eV_to_J/(k*temp))
 
     S_t = saha(T)
 
     #solution to x^2 + S_t*x - S_t = 0
-    f2 = (-S_t - np.sqrt(S_t**2 + 4*S_t))/2 #my f2 is wrong :)
+    f2 = (-S_t + np.sqrt(S_t**2 + 4*S_t) )/2
 
     plt.title(r'$f_2$ vs $s$')
     plt.ylabel(r'$f_2$')
-    plt.xlabel(r'$s$ (km)')
+    plt.xlabel(r'$s$ (m)')
 
     plt.plot(s, f2)
 
@@ -78,10 +78,6 @@ def part_b(T, s, b_path=''):
     else: plt.show()
 
     plt.close('all')
-
-    """
-    At what radius / range of radii (in km) is this fraction largest?
-    """
 
     return f2
 
@@ -98,14 +94,12 @@ def part_c(f2, s, c_path=''):
     rho = 1e-6
     kappa, kbalmer = 3, 3.5e5
 
-    f2 = np.linspace(1, 0, 10000)
-
-    tau_balmer = rho*s*(f2*kbalmer + (1-f2)*kappa) #i think this is wrong
+    tau_balmer = rho*s*(f2*kbalmer + (1-f2)*kappa)
     tau = rho*kappa*s
 
     plt.title(r'$\tau$ vs $s$')
     plt.ylabel(r'$\tau$')
-    plt.xlabel(r'$s$ (km)')
+    plt.xlabel(r'$s$ (m)')
 
     plt.ylim(0, 1)
 
@@ -120,11 +114,22 @@ def part_c(f2, s, c_path=''):
 
     plt.close('all')
 
-    """
-    At what radius / range of radii (in km) is this fraction largest?
-    """
 
-    return f2
+    #this part is just to see the full graph
+    plt.title(r'$\tau$ vs $s$')
+    plt.ylabel(r'$\tau$')
+    plt.xlabel(r'$s$ (m)')
+
+    plt.plot(s, tau, label=r'$\tau$')
+    plt.plot(s, tau_balmer, label=r'$\tau_{Balmer}$')
+
+    plt.legend()
+
+    if c_path != '':
+        plt.savefig(c_path.replace('c', 'c_full'))
+    else: plt.show()
+
+    plt.close('all')
 
 
 def main():
