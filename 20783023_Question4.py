@@ -31,9 +31,9 @@ def part_a(a_path=''):
 
     plt.title(r'$T$ vs $s$')
     plt.ylabel(r'$T$ (K)')
-    plt.xlabel(r'$s$ (m)')
+    plt.xlabel(r'$s$ (km)')
 
-    plt.plot(s, T)
+    plt.plot(s/1000, T)
 
     if a_path != '':
         plt.savefig(a_path)
@@ -69,9 +69,9 @@ def part_b(T, s, b_path=''):
 
     plt.title(r'$f_2$ vs $s$')
     plt.ylabel(r'$f_2$')
-    plt.xlabel(r'$s$ (m)')
+    plt.xlabel(r'$s$ (km)')
 
-    plt.plot(s, f2)
+    plt.plot(s/1000, f2)
 
     if b_path != '':
         plt.savefig(b_path)
@@ -99,12 +99,12 @@ def part_c(f2, s, c_path=''):
 
     plt.title(r'$\tau$ vs $s$')
     plt.ylabel(r'$\tau$')
-    plt.xlabel(r'$s$ (m)')
+    plt.xlabel(r'$s$ (km)')
 
     plt.ylim(0, 1)
 
-    plt.plot(s, tau, label=r'$\tau$')
-    plt.plot(s, tau_balmer, label=r'$\tau_{Balmer}$')
+    plt.plot(s/1000, tau, label=r'$\tau$')
+    plt.plot(s/1000, tau_balmer, label=r'$\tau_{Balmer}$')
 
     plt.legend()
 
@@ -118,10 +118,10 @@ def part_c(f2, s, c_path=''):
     #this part is just to see the full graph
     plt.title(r'$\tau$ vs $s$')
     plt.ylabel(r'$\tau$')
-    plt.xlabel(r'$s$ (m)')
+    plt.xlabel(r'$s$ (km)')
 
-    plt.plot(s, tau, label=r'$\tau$')
-    plt.plot(s, tau_balmer, label=r'$\tau_{Balmer}$')
+    plt.plot(s/1000, tau, label=r'$\tau$')
+    plt.plot(s/1000, tau_balmer, label=r'$\tau_{Balmer}$')
 
     plt.legend()
 
