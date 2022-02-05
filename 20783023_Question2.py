@@ -109,17 +109,17 @@ def part_e(e_path=''):
     #Calculate Bl for each temperature
     Bl = [2*h*(c**2)/np.power(l, 4)*np.power(np.exp(h*c/(l*k*T)) - 1, -1) for T in [3000, 5500, 30000] ]
 
-    plt.title(r'log$_{10}$($B_\lambda$) vs log$_{10}$($\lambda$)')
+    plt.title(r'log$_{10}$($\lambda B_\lambda$) vs log$_{10}$($\lambda$)')
     plt.xlabel(r'log$_{10}$($\lambda$ (m))')
-    plt.ylabel(r'log$_{10}$($B_\lambda$ (W sr$^{-1}$ m$^{-3}$))')
+    plt.ylabel(r'log$_{10}$($\lambda B_\lambda$ (W sr$^{-1}$ m$^{-2}$))')
 
     plt.plot(np.log10(l), np.log10(Bl[0]), label = '$T=3000K$')
     plt.plot(np.log10(l), np.log10(Bl[1]), label = '$T=5500K$')
     plt.plot(np.log10(l), np.log10(Bl[2]), label = '$T=30000K$')
 
-    print(f'The T=3000K star log(Bl) varies by {np.abs(np.log10(Bl[0][-1]) - np.log10(Bl[0][0]))} over the visible wavelengths.')
-    print(f'The T=5500K star log(Bl) varies by {np.abs(np.log10(Bl[1][-1]) - np.log10(Bl[1][0]))} over the visible wavelengths.')
-    print(f'The T=30000K star log(Bl) varies by {np.abs(np.log10(Bl[2][-1]) - np.log10(Bl[2][0]))} over the visible wavelengths.')
+    print(f'The T=3000K star log(lBl) varies by {np.abs(np.log10(Bl[0][-1]) - np.log10(Bl[0][0]))} over the visible wavelengths.')
+    print(f'The T=5500K star log(lBl) varies by {np.abs(np.log10(Bl[1][-1]) - np.log10(Bl[1][0]))} over the visible wavelengths.')
+    print(f'The T=30000K star log(lBl) varies by {np.abs(np.log10(Bl[2][-1]) - np.log10(Bl[2][0]))} over the visible wavelengths.')
 
     plt.legend()
 
